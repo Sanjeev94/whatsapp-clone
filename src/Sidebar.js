@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import './Sidebar.css';
 import SidebarChat from './SidebarChat';
 import {Avatar, IconButton} from '@material-ui/core';
@@ -9,6 +9,10 @@ import { SearchOutlined } from '@material-ui/icons';
 
 
 function Sidebar() {
+    const [rooms, setRooms] = useState([]);
+    useEffect(() => {
+
+    }, []);
     return (
         <div className="sidebar">
             <div className="sidebar__header">
