@@ -6,12 +6,21 @@ import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import ChatIcon from '@material-ui/icons/Chat';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { SearchOutlined } from '@material-ui/icons';
+import db from "./firebase";
 
 
 function Sidebar() {
     const [rooms, setRooms] = useState([]);
     useEffect(() => {
+       db.collection("rooms").onSnapshot((snapshot) =>
+           setRooms(snapshot.docs.map((doc) => 
+            ({
+                id: doc.id,
+                data: doc.data(),
 
+            })
+            ))
+       );
     }, []);
     return (
         <div className="sidebar">
@@ -42,13 +51,14 @@ function Sidebar() {
 
             <div className="sidebar__chats">
                 <SidebarChat addNewChat />
-                <SidebarChat />
-                <SidebarChat />
+                {rooms.map(room => (
+                    <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+                ))}
                  {/* <h1>Sidebar Chat</h1> */}
             </div>
             
         </div>
-    )
+    );
 }
 
 export default Sidebar
