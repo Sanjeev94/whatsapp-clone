@@ -1,22 +1,39 @@
-
+import React, {useState} from 'react';
 import './App.css';
 import Sidebar from './Sidebar';
 import Chat from './Chat';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from './Login';
+
 
 function App() {
+  const [user, setUser] = useState(null);
   return (
-     // BEM naming Convention
+    // BEM naming Convention
     <div className="app">
-      {/* <h1>Whats App Clone</h1> */}
-
+    {!user ? (
+      <Login />
+    ) : (
       <div className="app__body">
+        <Router>
         <Sidebar />
-        <Chat />
+          <Switch>
+          
+            <Route path="/rooms/:roomId">
+               <Chat />
+            </Route>
+            <Route path="/">
+            <Chat />
+            </Route>
+        </Switch> 
+        </Router>
         {/* Sidebar */}
         {/* Chat */}
       </div>
+    )}
+      
     </div>
   );
 }
-
+export {Switch};
 export default App;
