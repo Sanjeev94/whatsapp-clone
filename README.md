@@ -2,7 +2,7 @@
 
 
 # Tech used
-# REact, Furebase materialui react router, context api, redux,google authentication,deply using firebase
+# React, Firebase & Firestore material-ui react router, context api, redux,google authentication,deply using firebase
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
